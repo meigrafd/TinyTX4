@@ -1,0 +1,49 @@
+Partlist
+
+Exported from tinytx3.brd at 17.02.2014 13:12:31
+
+EAGLE Version 6.4.0 Copyright (c) 1988-2013 CadSoft
+
+Assembly variant: 
+
+Part         Value          Package  Library        Position (mm)         Orientation
+
+ANT                         1,6/0,8  wirepad        (20.86 6.25)          R0
+BATANSCHLUSS                1X02     pinhead        (15.24 2.54)          R0
+C1           100n           C0805    rcl            (27.48 6.35)          R180
+C2           100n           C0805    rcl            (14.45 27.07)         MR90
+C3                          C0805    rcl            (27.94 11.43)         R0
+C4                          C0805    rcl            (31.75 8.89)          R0
+IC1          ATTINY84       SOIC14   avr-5          (7.82 25.8)           MR0
+JP1          No Booster     1X02     pinhead        (22.86 2.54)          R180
+JP2                         1X03     pinhead        (39.37 34.29)         R0
+JP3                         1X03     pinhead        (39.37 30.48)         R0
+JP4                         1X03     pinhead        (39.37 26.67)         R0
+JP5                         1X03     pinhead        (39.37 22.86)         R0
+JP6                         1X03     pinhead        (39.37 19.05)         R0
+JP7                         1X03     pinhead        (39.37 15.24)         R0
+JP8                         1X03     pinhead        (39.37 11.43)         R0
+JP9                         1X03     pinhead        (39.37 7.62)          R0
+JP10                        1X02     pinhead        (40.64 3.81)          R0
+L1           L1616FPS       L1616    L1616FSR       (29.21 17.78)         R0
+PAD1                        1,6/0,9  wirepad        (13.97 36.83)         R0
+PAD2                        1,6/0,9  wirepad        (16.51 36.83)         R0
+PAD3                        1,6/0,9  wirepad        (19.05 36.83)         R0
+PAD4                        1,6/0,9  wirepad        (21.59 36.83)         R0
+PAD5                        1,6/0,9  wirepad        (24.13 36.83)         R0
+PAD6                        1,6/0,9  wirepad        (26.67 36.83)         R0
+PAD7                        1,6/0,9  wirepad        (29.21 36.83)         R0
+PAD8                        1,6/0,9  wirepad        (31.75 36.83)         R0
+PAD9                        1,6/0,9  wirepad        (13.97 34.29)         R0
+PAD10                       1,6/0,9  wirepad        (16.51 34.29)         R0
+PAD11                       1,6/0,9  wirepad        (19.05 34.29)         R0
+PAD12                       1,6/0,9  wirepad        (21.59 34.29)         R0
+PAD13                       1,6/0,9  wirepad        (24.13 34.29)         R0
+PAD14                       1,6/0,9  wirepad        (26.67 34.29)         R0
+PAD15                       1,6/0,9  wirepad        (29.21 34.29)         R0
+PAD16                       1,6/0,9  wirepad        (31.75 34.29)         R0
+R1           10k            R0805    rcl            (30.48 21.59)         MR270
+SV1                         1X08     pinhead        (22.86 39.37)         R0
+SV2                         ML6      con-harting-ml (25.4 25.4)           R0
+U$1          RFM12B         RFM12B   JeeParts       (11.43 13.87)         R0
+U$2          LTC3525        TSOT23-6 ltc3525        (29.21 13.97)         R270
