@@ -1,7 +1,7 @@
 // RFM12B Sender 
 //
 // Sketch to test functionality of Send.
-// Sends static string every 3 Sec. Requests ACK. Without power saving.
+// Sends static integer every 3 Sec. Requests ACK. Without power saving.
 //
 // modified by meigrafd @ 25.01.2015
 //------------------------------------------------------------------------------
