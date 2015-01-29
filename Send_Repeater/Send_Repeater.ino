@@ -61,7 +61,7 @@ INT0  PWM (D2) PB2  5|    |10  PA3 (D7)
 // - provide a 16-byte encryption KEY (same on all nodes that talk encrypted)
 // - to call .Encrypt(KEY) to start encrypting
 // - to stop encrypting call .Encrypt(NULL)
-#define KEY   "a4gBM69UZ03lQyK4"
+//#define KEY   "a4gBM69UZ03lQyK4"
 
 // Need an instance of the Radio Module
 RFM12B radio;
@@ -71,6 +71,10 @@ RFM12B radio;
   // Initialise UART
   SoftwareSerial mySerial(rxPin, txPin);
 #endif
+
+
+String inputString;
+
 //##############################################################################
 
 static void activityLED (byte state, byte time = 0) {
@@ -190,14 +194,19 @@ void loop() {
       #endif
 
       // Buffer to store incoming data
-      const char* inData;
       int i;
       for (byte i = 0; i < *radio.DataLen; i++) { //can also use radio.GetDataLen() if you don't like pointers
         #ifdef DEBUG
           mySerial.print((char) radio.Data[i]);
         #endif
-        inData += (char)radio.Data[i];
+        char inData = (char)radio.Data[i];
+        inputString += inData;
       }
+      /* maybe do some stuff here
+      if (inputString == "n") {
+        //switch pin or whatever..
+      }
+      */
 
       if (radio.ACKRequested()) {
         radio.SendACK();
@@ -205,12 +214,18 @@ void loop() {
           mySerial.print(" - ACK sent");
         #endif
       }
-  
-      // Send received data to PI
-      setupTransmit();
-      radio.Send(T_GATEWAYID, (uint8_t *)inData, strlen(inData), requestACK);
-      radio.SendWait(2);    //wait for RF to finish sending (2=standby mode, 3=power down)
-      setupReceive();
+
+      if (inputString != ""){
+        char msg[inputString.length() + 1];
+        inputString.toCharArray(msg, inputString.length() + 1);
+        // Send received data to PI
+        setupTransmit();
+        radio.Send(T_GATEWAYID, (uint8_t *)msg, strlen(msg), requestACK);
+        radio.SendWait(2);    //wait for RF to finish sending (2=standby mode, 3=power down)
+        setupReceive();
+        inputString = "";
+        msg[0] = (char)0;
+      }
 
       if (LEDpin) {
         blink(LEDpin, 2);
