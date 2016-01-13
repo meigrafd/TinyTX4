@@ -72,9 +72,9 @@ SDA   PWM (D4) PA6  7|    |8   PA5 (D5) PWM
 // Need an instance of the Radio Module
 RFM12B radio;
 
-// SHT21/HTU21DF connects through SoftwareI2C, so that SCL and SDA can be any pin
-// If negative values are observed, add pullup resistors between SDA/VCC and SCL/VCC
-// 10K pullups were NOT sufficient, but 22K worked well.
+// SHT21/HTU21DF connects through SoftwareI2C, so that SCL and SDA can be just any pin
+// if negative values are received for both temp and hum, add pullup resistors between
+// SDA/VCC and SCL/VCC. 10K pullups were NOT sufficient, but 47K did the trick.
 SoftI2CMaster i2c = SoftI2CMaster( sclPin, sdaPin, 0 );
 Adafruit_HTU21DF htu = Adafruit_HTU21DF(&i2c);
 
