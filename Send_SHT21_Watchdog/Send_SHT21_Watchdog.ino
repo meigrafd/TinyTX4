@@ -224,18 +224,31 @@ void loop() {
 
     pinMode(powerPin, OUTPUT);  // set power pin for Sensor to output
     digitalWrite(powerPin, HIGH); // turn Sensor on
-  
-    delay(30);  // Kurzer Delay zur Initialisierung (SHT21 benoetigt min. 15ms nach dem Power-On)
-  
+    delay(100);  // short delay to initialize the sensor, takes 15ms according to the datasheet
+    
+    // stuff to read the SHT21/HTU21D-F/SI7021 temperature/humidity sensor
     float temp;
     float humi;
+    float humc;
+    int h;
 
-    // Read values from the sensor
+    // read values from the sensor
     temp = htu.readTemperature();
-    humi = htu.readHumidity();
-
     int t = floor((temp * 100.0) + 0.5);
-    int h = floor((humi * 100.0) + 0.5);
+    digitalWrite(powerPin, LOW); // turn sensor off, for reset
+
+    // for unknown reason communication with the sensor occasionally fails when reading humidity
+    // therefore, we repeate measurement in case that negative values were received
+    do {
+         digitalWrite(powerPin, HIGH); // turn Sensor on
+         delay(100);  // short delay to initialize the sensor, takes 15ms according to the datasheet
+         humi = htu.readHumidity();
+         // compensated RH, adapted from https://github.com/enjoyneering/HTU21D - I don't know if is it really necessary!?
+         humc = humi + (25 - temp) * -0.15; // Where does the correction factor (-0.15) come from?
+         h = floor((humc * 100.0) + 0.5);
+         digitalWrite(powerPin, LOW); // turn sensor off, for reset
+         delay(100);
+       } while ( h < 0 );
       
     int vcc  = readVcc(); // Get supply voltage
     
